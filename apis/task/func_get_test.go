@@ -1,7 +1,6 @@
 package task
 
 import (
-	"github.com/davecgh/go-spew/spew"
 	"github.com/go-resty/resty/v2"
 	"github.com/jpbede/netpalmgo/apis/getconfig"
 	"github.com/jpbede/netpalmgo/models"
@@ -37,10 +36,8 @@ func TestClient_GetWithTaskResponse(t *testing.T) {
 
 	time.Sleep(10 * time.Second) // give netpalm some time to process
 
-	resp, err := taskClient.GetWithTaskResponse(getconfigResp.Data)
+	_, err = taskClient.GetWithTaskResponse(getconfigResp.Data)
 	if err != nil {
 		t.Errorf("Got error while running Get(): %s", err.Error())
 	}
-
-	spew.Dump(resp)
 }
