@@ -32,7 +32,7 @@ func New(apiUrl, apiKey string) *Client {
 
 func NewWithClient(apiUrl, apiKey string, httpClient *http.Client) *Client {
 	c := Client{}
-	c.resty = newResty(apiUrl, apiKey, nil)
+	c.resty = newResty(apiUrl, apiKey, httpClient)
 	return &c
 }
 
