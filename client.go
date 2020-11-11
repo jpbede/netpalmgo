@@ -9,31 +9,36 @@ import (
 type Client struct {
 	resty *resty.Client
 
-	getconfig getconfig.Client
+	getConfig getconfig.Client
+}
+
+func newResty(apiUrl, apiKey string, httpClient *http.Client) *resty.Client {
+	var r *resty.Client
+	if httpClient != nil {
+		r = resty.NewWithClient(httpClient)
+	} else {
+		r = resty.New()
+	}
+	r.SetHostURL(apiUrl)
+	r.SetHeader("x-api-key", apiKey)
+	return r
 }
 
 func New(apiUrl, apiKey string) *Client {
 	c := Client{}
-	c.resty = resty.New()
-	c.resty.SetHostURL(apiUrl)
-	c.resty.SetHeader("x-api-key", apiKey)
-
-	c.getconfig = getconfig.New(c.resty)
-
+	c.resty = newResty(apiUrl, apiKey, nil)
 	return &c
 }
 
 func NewWithClient(apiUrl, apiKey string, httpClient *http.Client) *Client {
 	c := Client{}
-	c.resty = resty.NewWithClient(httpClient)
-	c.resty.SetHostURL(apiUrl)
-	c.resty.SetHeader("x-api-key", apiKey)
-
-	c.getconfig = getconfig.New(c.resty)
-
+	c.resty = newResty(apiUrl, apiKey, nil)
 	return &c
 }
 
 func (c *Client) GetConfig() getconfig.Client {
-	return c.getconfig
+	if c.getConfig == nil {
+		c.getConfig = getconfig.New(c.resty)
+	}
+	return c.getConfig
 }
