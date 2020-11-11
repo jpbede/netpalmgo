@@ -3,6 +3,7 @@ package netpalmgo
 import (
 	"github.com/go-resty/resty/v2"
 	"github.com/jpbede/netpalmgo/apis/getconfig"
+	"github.com/jpbede/netpalmgo/apis/task"
 	"net/http"
 )
 
@@ -10,6 +11,7 @@ type Client struct {
 	resty *resty.Client
 
 	getConfig getconfig.Client
+	task      task.Client
 }
 
 func newResty(apiUrl, apiKey string, httpClient *http.Client) *resty.Client {
@@ -41,4 +43,11 @@ func (c *Client) GetConfig() getconfig.Client {
 		c.getConfig = getconfig.New(c.resty)
 	}
 	return c.getConfig
+}
+
+func (c *Client) Task() task.Client {
+	if c.task == nil {
+		c.task = task.New(c.resty)
+	}
+	return c.task
 }
