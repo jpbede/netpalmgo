@@ -23,4 +23,10 @@ jobs:
           go get -v -t -d ./...
 
       - name: Test
-        run: go test -v .
+        run: go test -v ./...
+        env:
+          NETPALM_APIURL: ${{ secrets.NETPALM_APIURL }}
+          NETPALM_APIKEY: ${{ secrets.NETPALM_APIKEY }}
+          DEVICE_HOST: ${{ secrets.DEVICE_HOST }}
+          DEVICE_USER: ${{ secrets.DEVICE_USER }}
+          DEVICE_PASSWORD: ${{ secrets.DEVICE_PASSWORD }}
