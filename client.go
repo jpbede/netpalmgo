@@ -12,7 +12,7 @@ type Client struct {
 	getconfig getconfig.Client
 }
 
-func New(apiUrl, apiKey string) Client {
+func New(apiUrl, apiKey string) *Client {
 	c := Client{}
 	c.resty = resty.New()
 	c.resty.SetHostURL(apiUrl)
@@ -20,10 +20,10 @@ func New(apiUrl, apiKey string) Client {
 
 	c.getconfig = getconfig.New(c.resty)
 
-	return c
+	return &c
 }
 
-func NewWithClient(apiUrl, apiKey string, httpClient *http.Client) Client {
+func NewWithClient(apiUrl, apiKey string, httpClient *http.Client) *Client {
 	c := Client{}
 	c.resty = resty.NewWithClient(httpClient)
 	c.resty.SetHostURL(apiUrl)
@@ -31,7 +31,7 @@ func NewWithClient(apiUrl, apiKey string, httpClient *http.Client) Client {
 
 	c.getconfig = getconfig.New(c.resty)
 
-	return c
+	return &c
 }
 
 func (c *Client) GetConfig() getconfig.Client {
