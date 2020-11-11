@@ -21,7 +21,7 @@ func GetClient() *client {
 	return nplClient
 }
 
-func TestClient_Run(t *testing.T) {
+func TestClient_Get(t *testing.T) {
 	cl := GetClient()
 	args := models.ConnectionArgs{
 		DeviceType: "vyos",
@@ -32,7 +32,7 @@ func TestClient_Run(t *testing.T) {
 
 	resp, err := cl.Get("show int", models.LibraryNapalm, args)
 	if err != nil {
-		t.Errorf("Got error while running Run(): %s", err.Error())
+		t.Errorf("Got error while running Get(): %s", err.Error())
 	}
 
 	if resp != nil && resp.Status != models.StatusSuccess {

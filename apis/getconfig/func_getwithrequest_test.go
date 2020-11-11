@@ -22,7 +22,7 @@ func TestClient_GetWithRequest(t *testing.T) {
 
 	resp, err := cl.GetWithRequest(req)
 	if err != nil {
-		t.Errorf("Got error while running Run(): %s", err.Error())
+		t.Errorf("Got error while running GetWithRequest(): %s", err.Error())
 	}
 
 	if resp != nil && resp.Status != models.StatusSuccess {
