@@ -30,7 +30,7 @@ func TestClient_Run(t *testing.T) {
 		Password:   os.Getenv("DEVICE_PASSWORD"),
 	}
 
-	resp, err := cl.Run("show int", models.LibraryNapalm, args)
+	resp, err := cl.Get("show int", models.LibraryNapalm, args)
 	if err != nil {
 		t.Errorf("Got error while running Run(): %s", err.Error())
 	}

@@ -6,7 +6,7 @@ import (
 	"testing"
 )
 
-func TestClient_RunWithRequest(t *testing.T) {
+func TestClient_GetWithRequest(t *testing.T) {
 	cl := GetClient()
 	req := models.GetConfigRequest{
 		Library: models.LibraryNapalm,
@@ -20,7 +20,7 @@ func TestClient_RunWithRequest(t *testing.T) {
 		QueueStrategy: models.QueueStrategyFIFO,
 	}
 
-	resp, err := cl.RunWithRequest(req)
+	resp, err := cl.GetWithRequest(req)
 	if err != nil {
 		t.Errorf("Got error while running Run(): %s", err.Error())
 	}
