@@ -14,5 +14,5 @@ func CheckForHTTPError(response *resty.Response) error {
 		json.Unmarshal(response.Body(), &errArr)
 		return errors.New(errArr["detail"])
 	}
-	return errors.New("Unknown error")
+	return nil
 }
