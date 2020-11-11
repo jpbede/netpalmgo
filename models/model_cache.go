@@ -1,7 +1,7 @@
 package models
 
 type Cache struct {
-	Enabled bool
-	TTL     int
-	Poison  bool
+	Enabled bool `json:"enabled"`
+	TTL     int  `json:"ttl"`
+	Poison  bool `json:"poison"`
 }

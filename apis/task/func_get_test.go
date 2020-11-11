@@ -1,11 +1,13 @@
 package task
 
 import (
+	"github.com/davecgh/go-spew/spew"
 	"github.com/go-resty/resty/v2"
 	"github.com/jpbede/netpalmgo/apis/getconfig"
 	"github.com/jpbede/netpalmgo/models"
 	"os"
 	"testing"
+	"time"
 )
 
 func TestClient_GetWithTaskResponse(t *testing.T) {
@@ -15,23 +17,30 @@ func TestClient_GetWithTaskResponse(t *testing.T) {
 	}
 	getConfigClient := getconfig.New(r)
 
-	args := models.ConnectionArgs{
-		DeviceType: "vyos",
-		Host:       os.Getenv("DEVICE_HOST"),
-		Username:   os.Getenv("DEVICE_USER"),
-		Password:   os.Getenv("DEVICE_PASSWORD"),
+	req := models.GetConfigRequest{
+		Library: models.LibraryNetmiko,
+		ConnectionArgs: models.ConnectionArgs{
+			DeviceType: "vyos",
+			Host:       os.Getenv("DEVICE_HOST"),
+			Username:   os.Getenv("DEVICE_USER"),
+			Password:   os.Getenv("DEVICE_PASSWORD"),
+		},
+		Command:       "show int",
+		QueueStrategy: models.QueueStrategyFIFO,
 	}
-	getconfigResp, err := getConfigClient.Get("show int", models.LibraryNapalm, args)
+	req.UseTextFSM()
+
+	getconfigResp, err := getConfigClient.GetWithRequest(req)
 	if err != nil {
 		t.Errorf("Got error while creating task: %s", err.Error())
 	}
+
+	time.Sleep(10 * time.Second) // give netpalm some time to process
 
 	resp, err := taskClient.GetWithTaskResponse(getconfigResp.Data)
 	if err != nil {
 		t.Errorf("Got error while running Get(): %s", err.Error())
 	}
 
-	if resp != nil && resp.Status != models.StatusSuccess {
-		t.Error("Task wasn't successful")
-	}
+	spew.Dump(resp)
 }

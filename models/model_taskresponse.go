@@ -1,8 +1,7 @@
 package models
 
-type TaskResult []string
-type TaskResults map[string]TaskResult
-type TaskError map[string]string
+type TaskResults map[string]interface{}
+type TaskError string
 
 type TaskResponse struct {
 	TaskID       string       `json:"task_id"`

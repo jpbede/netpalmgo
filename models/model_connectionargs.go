@@ -1,8 +1,8 @@
 package models
 
 type ConnectionArgs struct {
-	DeviceType string
-	Host       string
-	Username   string
-	Password   string
+	DeviceType string `json:"device_type"`
+	Host       string `json:"host"`
+	Username   string `json:"username"`
+	Password   string `json:"password"`
 }

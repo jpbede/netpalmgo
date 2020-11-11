@@ -9,7 +9,7 @@ import (
 func TestClient_GetWithRequest(t *testing.T) {
 	cl := GetClient()
 	req := models.GetConfigRequest{
-		Library: models.LibraryNapalm,
+		Library: models.LibraryNetmiko,
 		ConnectionArgs: models.ConnectionArgs{
 			DeviceType: "vyos",
 			Host:       os.Getenv("DEVICE_HOST"),

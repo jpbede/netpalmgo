@@ -6,6 +6,7 @@ import (
 	"github.com/jpbede/netpalmgo/util"
 )
 
+// GetWithRequest run a already created request
 func (c *client) GetWithRequest(request models.GetConfigRequest) (*models.Response, error) {
 	restyResp, err := c.transport.R().SetBody(request).Post("/getconfig")
 	if err != nil {

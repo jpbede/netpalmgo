@@ -30,7 +30,7 @@ func TestClient_Get(t *testing.T) {
 		Password:   os.Getenv("DEVICE_PASSWORD"),
 	}
 
-	resp, err := cl.Get("show int", models.LibraryNapalm, args)
+	resp, err := cl.Get("show int", models.LibraryNetmiko, args)
 	if err != nil {
 		t.Errorf("Got error while running Get(): %s", err.Error())
 	}
