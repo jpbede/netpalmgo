@@ -1,6 +1,7 @@
 package netpalmgo
 
 import (
+	"github.com/go-resty/resty/v2"
 	"github.com/jpbede/netpalmgo/apis/getconfig"
 	"github.com/jpbede/netpalmgo/apis/task"
 	"net/http"
