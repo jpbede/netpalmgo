@@ -1,8 +1,12 @@
 package models
 
+// TaskResults represents the results of the task
 type TaskResults map[string]interface{}
+
+// TaskError represents a error
 type TaskError string
 
+// TaskResponse represents informations about the task
 type TaskResponse struct {
 	TaskID       string       `json:"task_id"`
 	CreatedOn    string       `json:"created_on"`

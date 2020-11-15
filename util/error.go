@@ -7,6 +7,7 @@ import (
 	"net/http"
 )
 
+// CheckForHTTPError does some generic response checks and raises a error when it detects some
 func CheckForHTTPError(response *resty.Response) error {
 	// check if authentication error
 	if response.StatusCode() == http.StatusForbidden {

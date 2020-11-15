@@ -1,5 +1,6 @@
 package models
 
+// Status of a request
 type Status string
 
 const (

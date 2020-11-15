@@ -1,5 +1,6 @@
 package models
 
+// TaskStatus represents the status of a task
 type TaskStatus string
 
 const (

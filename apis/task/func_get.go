@@ -6,6 +6,7 @@ import (
 	"github.com/jpbede/netpalmgo/util"
 )
 
+// GetWithTaskResponse gets the current infos for a given TaskResponse
 func (c *client) GetWithTaskResponse(response models.TaskResponse) (*models.Response, error) {
 	restyResp, err := c.transport.R().Get("/task/" + response.TaskID)
 	if err != nil {

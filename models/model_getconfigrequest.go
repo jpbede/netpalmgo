@@ -1,5 +1,6 @@
 package models
 
+// GetConfigRequest represents a request for /getconfig
 type GetConfigRequest struct {
 	Library        Library           `json:"library"`
 	ConnectionArgs ConnectionArgs    `json:"connection_args"`

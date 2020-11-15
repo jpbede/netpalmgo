@@ -1,5 +1,6 @@
 package models
 
+// TaskMetaData represents some meta data of a task like when it was started
 type TaskMetaData struct {
 	EnqueuedAt             string `json:"enqueued_at"`
 	StartedAt              string `json:"started_at"`

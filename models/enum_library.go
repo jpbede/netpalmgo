@@ -1,5 +1,6 @@
 package models
 
+// Library that would be used for connecting
 type Library string
 
 const (
