@@ -34,7 +34,7 @@ func New(apiUrl, apiKey string) *Client {
 	return &c
 }
 
-// New creates a new Client with APIUrl and APIKey with a given http.Client
+// NewWithClient creates a new Client with APIUrl and APIKey with a given http.Client
 func NewWithClient(apiUrl, apiKey string, httpClient *http.Client) *Client {
 	c := Client{}
 	c.resty = newResty(apiUrl, apiKey, httpClient)

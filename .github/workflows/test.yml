@@ -22,11 +22,20 @@ jobs:
         run: |
           go get -v -t -d ./...
 
-      - name: Test
-        run: go test -v ./...
-        env:
-          NETPALM_APIURL: ${{ secrets.NETPALM_APIURL }}
-          NETPALM_APIKEY: ${{ secrets.NETPALM_APIKEY }}
-          DEVICE_HOST: ${{ secrets.DEVICE_HOST }}
-          DEVICE_USER: ${{ secrets.DEVICE_USER }}
-          DEVICE_PASSWORD: ${{ secrets.DEVICE_PASSWORD }}
+    - name: Generate coverage report
+      run: |
+        go test `go list ./... | grep -v examples` -coverprofile=coverage.txt -covermode=atomic
+      env:
+        NETPALM_APIURL: ${{ secrets.NETPALM_APIURL }}
+        NETPALM_APIKEY: ${{ secrets.NETPALM_APIKEY }}
+        DEVICE_HOST: ${{ secrets.DEVICE_HOST }}
+        DEVICE_USER: ${{ secrets.DEVICE_USER }}
+        DEVICE_PASSWORD: ${{ secrets.DEVICE_PASSWORD }}
+
+    - name: Upload coverage report
+      uses: codecov/codecov-action@v1.0.2
+      with:
+        token: ${{ secrets.CODECOV_TOKEN }}
+        file: ./coverage.txt
+        flags: unittests
+        name: codecov-umbrella
