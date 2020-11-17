@@ -19,7 +19,7 @@ func GetClient() *Client {
 func TestNew(t *testing.T) {
 	cl := New(os.Getenv("NETPALM_APIURL"), os.Getenv("NETPALM_APIKEY"))
 
-	if cl.resty == nil {
+	if cl.transport == nil {
 		t.Error("Resty client is empty")
 	}
 }
@@ -27,7 +27,7 @@ func TestNew(t *testing.T) {
 func TestNewWithClient(t *testing.T) {
 	cl := NewWithClient(os.Getenv("NETPALM_APIURL"), os.Getenv("NETPALM_APIKEY"), &http.Client{})
 
-	if cl.resty == nil {
+	if cl.transport == nil {
 		t.Error("Resty client is empty")
 	}
 }
@@ -38,5 +38,14 @@ func TestClient_GetConfig(t *testing.T) {
 
 	if cfgAPI == nil {
 		t.Error("Failed to get 'GetConfig' endpoint")
+	}
+}
+
+func TestClient_Task(t *testing.T) {
+	cl := GetClient()
+	taskAPI := cl.Task()
+
+	if taskAPI == nil {
+		t.Error("Failed to get 'Task' endpoint")
 	}
 }
