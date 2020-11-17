@@ -40,7 +40,8 @@ func TestClient_GetWithTaskResponse(t *testing.T) {
 	resp, err := taskClient.GetWithTaskResponse(getconfigResp.Data)
 	if err != nil {
 		t.Errorf("Got error while running Get(): %s", err.Error())
-	} else if resp == nil {
+	}
+	if resp == nil {
 		t.Errorf("Got nil response but no error: %s", fmt.Sprint(resp))
 	}
 }
