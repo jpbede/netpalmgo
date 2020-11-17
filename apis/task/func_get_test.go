@@ -1,6 +1,7 @@
 package task
 
 import (
+	"fmt"
 	"github.com/go-resty/resty/v2"
 	"github.com/jpbede/netpalmgo/apis/getconfig"
 	"github.com/jpbede/netpalmgo/models"
@@ -36,8 +37,10 @@ func TestClient_GetWithTaskResponse(t *testing.T) {
 
 	time.Sleep(10 * time.Second) // give netpalm some time to process
 
-	_, err = taskClient.GetWithTaskResponse(getconfigResp.Data)
+	resp, err := taskClient.GetWithTaskResponse(getconfigResp.Data)
 	if err != nil {
 		t.Errorf("Got error while running Get(): %s", err.Error())
+	} else if resp == nil {
+		t.Errorf("Got nil response but no error: %s", fmt.Sprint(resp))
 	}
 }
