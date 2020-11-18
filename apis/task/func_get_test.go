@@ -26,12 +26,14 @@ func getResponse(taskID string, taskStatus models.TaskStatus) models.Response {
 func TestClient_GetWithTaskResponse(t *testing.T) {
 	server := httptest.NewServer(http.HandlerFunc(func(rw http.ResponseWriter, req *http.Request) {
 		// test successful json response
-		assert.Equal(t, req.URL.String(), "/task/123")
-
-		// Send response to be tested
-		resp, err := json.Marshal(getResponse("123", models.TaskStatusFinished))
-		assert.NoError(t, err)
-		rw.Write(resp)
+		if req.URL.String() == "/task/123" {
+			// Send response to be tested
+			resp, err := json.Marshal(getResponse("123", models.TaskStatusFinished))
+			assert.NoError(t, err)
+			rw.Write(resp)
+		} else if req.URL.String() == "/task/1234" {
+			rw.Write([]byte("no json"))
+		}
 	}))
 
 	httpClient := server.Client()
@@ -46,4 +48,12 @@ func TestClient_GetWithTaskResponse(t *testing.T) {
 	assert.NoError(t, err)
 	assert.Equal(t, resp.Data.TaskID, "123")
 	assert.Equal(t, resp.Data.TaskStatus, models.TaskStatusFinished)
+
+	// test invalid json response
+	getConfigResp = models.TaskResponse{
+		TaskID: "1234",
+	}
+	resp, err = taskCl.GetWithTaskResponse(context.Background(), getConfigResp)
+	assert.Error(t, err)
+	assert.EqualError(t, err, "invalid character 'o' in literal null (expecting 'u')")
 }
