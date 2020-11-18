@@ -32,3 +32,9 @@ jobs:
           file: ./coverage.txt
           flags: unittests
           name: codecov-umbrella
+
+      - name: Run codacy-coverage-reporter
+        uses: codacy/codacy-coverage-reporter-action@master
+        with:
+          project-token: ${{ secrets.CODACY_PROJECT_TOKEN }}
+          coverage-reports: coverage.txt
