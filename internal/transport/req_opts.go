@@ -45,14 +45,3 @@ func WithJSONRequestBody(in interface{}) RequestOption {
 		return nil
 	}
 }
-
-// WithQueryValue adds a query parameter to a request's URL.
-func WithQueryValue(key, value string) RequestOption {
-	return func(req *http.Request) error {
-		q := req.URL.Query()
-		q.Set(key, value)
-
-		req.URL.RawQuery = q.Encode()
-		return nil
-	}
-}
