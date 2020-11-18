@@ -1,13 +1,15 @@
 package getconfig
 
-import "github.com/go-resty/resty/v2"
+import (
+	"github.com/jpbede/netpalmgo/internal/transport"
+)
 
 type client struct {
-	transport *resty.Client
+	transport *transport.Client
 }
 
 // New creates a new Client for the setconfig Endpoint
-func New(transport *resty.Client) Client {
+func New(transport *transport.Client) Client {
 	return &client{
 		transport: transport,
 	}

@@ -1,12 +1,13 @@
-package setconfig
+package setconfig_test
 
 import (
-	"github.com/go-resty/resty/v2"
+	"github.com/jpbede/netpalmgo/apis/setconfig"
+	"github.com/jpbede/netpalmgo/internal/transport"
 	"testing"
 )
 
 func TestNew(t *testing.T) {
-	cl := New(resty.New())
+	cl := setconfig.New(transport.NewClient("http://localhost", "123", nil))
 
 	if cl == nil {
 		t.Error("Got no client")

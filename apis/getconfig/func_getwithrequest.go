@@ -1,24 +1,16 @@
 package getconfig
 
 import (
-	"encoding/json"
+	"context"
+	"github.com/jpbede/netpalmgo/internal/transport"
 	"github.com/jpbede/netpalmgo/models"
-	"github.com/jpbede/netpalmgo/util"
 )
 
 // GetWithRequest run a already created request
-func (c *client) GetWithRequest(request models.GetConfigRequest) (*models.Response, error) {
-	restyResp, err := c.transport.R().SetBody(request).Post("/getconfig")
-	if err != nil {
-		return nil, err
-	}
-
-	if err := util.CheckForHTTPError(restyResp); err != nil {
-		return nil, err
-	}
-
+func (c *client) GetWithRequest(ctx context.Context, request models.GetConfigRequest) (*models.Response, error) {
 	var resp *models.Response
-	if err := json.Unmarshal(restyResp.Body(), &resp); err != nil {
+	err := c.transport.Post(ctx, "/getconfig", &resp, transport.WithJSONRequestBody(request))
+	if err != nil {
 		return nil, err
 	}
 	return resp, nil

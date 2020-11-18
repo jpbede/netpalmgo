@@ -1,30 +1,22 @@
 package netpalmgo
 
 import (
-	"github.com/go-resty/resty/v2"
 	"github.com/jpbede/netpalmgo/apis/getconfig"
 	"github.com/jpbede/netpalmgo/apis/task"
+	"github.com/jpbede/netpalmgo/internal/transport"
 	"net/http"
 )
 
 // Client is the main client of netpalmgo
 type Client struct {
-	transport *resty.Client
+	transport *transport.Client
 
 	getConfig getconfig.Client
 	task      task.Client
 }
 
-func newTransport(apiURL, apiKey string, httpClient *http.Client) *resty.Client {
-	var r *resty.Client
-	if httpClient != nil {
-		r = resty.NewWithClient(httpClient)
-	} else {
-		r = resty.New()
-	}
-	r.SetHostURL(apiURL)
-	r.SetHeader("x-api-key", apiKey)
-	return r
+func newTransport(apiURL, apiKey string, httpClient *http.Client) *transport.Client {
+	return transport.NewClient(apiURL, apiKey, httpClient)
 }
 
 // New creates a new Client with APIUrl and APIKey
