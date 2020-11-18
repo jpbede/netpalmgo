@@ -6,3 +6,9 @@
 [![Go Report Card](https://goreportcard.com/badge/github.com/jpbede/netpalmgo)](https://goreportcard.com/report/github.com/jpbede/netpalmgo)
 
 Go package for [netpalm API](https://github.com/tbotnz/netpalm)
+
+## netpalmgo support
+
+I maintain a community on the networktocode slack channel
+
+#netpalmgo on networktocode.slack.com
