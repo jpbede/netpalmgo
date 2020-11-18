@@ -1,0 +1,28 @@
+package models
+
+// SetConfigRequest represents a request for /setconfig
+type SetConfigRequest struct {
+	Library        Library           `json:"library"`
+	ConnectionArgs ConnectionArgs    `json:"connection_args"`
+	Config         map[string]string `json:"config,omitempty"`
+	J2Config       J2Config          `json:"j2config,omitempty"`
+	Args           SetConfigArgs     `json:"args,omitempty"`
+	QueueStrategy  QueueStrategy     `json:"queue_strategy"`
+	PreChecks      []PrePostCheck    `json:"pre_checks,omitempty"`
+	PostChecks     []PrePostCheck    `json:"post_checks,omitempty"`
+	EnableMode     bool              `json:"enable_mode,omitempty"`
+}
+
+type J2Config struct {
+	Template string            `json:"template"`
+	Args     map[string]string `json:"args"`
+}
+
+type SetConfigArgs struct {
+	Payload          interface{} `json:"payload,omitempty"`
+	DefaultOperation string      `json:"default_operation,omitempty"`
+	Target           string      `json:"target,omitempty"`
+	Config           string      `json:"config,omitempty"`
+	Uri              string      `json:"uri,omitempty"`
+	Action           string      `json:"action,omitempty"`
+}
