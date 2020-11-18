@@ -1,47 +1,39 @@
 package task
 
 import (
-	"fmt"
+	"encoding/json"
 	"github.com/go-resty/resty/v2"
-	"github.com/jpbede/netpalmgo/apis/getconfig"
 	"github.com/jpbede/netpalmgo/models"
-	"os"
+	"github.com/stretchr/testify/assert"
+	"net/http"
+	"net/http/httptest"
 	"testing"
-	"time"
 )
 
 func TestClient_GetWithTaskResponse(t *testing.T) {
-	r := resty.New().SetHostURL(os.Getenv("NETPALM_APIURL")).SetHeader("x-api-key", os.Getenv("NETPALM_APIKEY"))
-	taskClient := &client{
-		transport: r,
-	}
-	getConfigClient := getconfig.New(r)
+	server := httptest.NewServer(http.HandlerFunc(func(rw http.ResponseWriter, req *http.Request) {
+		// Test url parameter
+		assert.Equal(t, req.URL.String(), "/task/123")
 
-	req := models.GetConfigRequest{
-		Library: models.LibraryNetmiko,
-		ConnectionArgs: models.ConnectionArgs{
-			DeviceType: "vyos",
-			Host:       os.Getenv("DEVICE_HOST"),
-			Username:   os.Getenv("DEVICE_USER"),
-			Password:   os.Getenv("DEVICE_PASSWORD"),
-		},
-		Command:       "show int",
-		QueueStrategy: models.QueueStrategyFIFO,
-	}
-	req.UseTextFSM()
+		// Send response to be tested
+		resp, err := json.Marshal(models.Response{
+			Status: models.StatusSuccess,
+			Data: models.TaskResponse{
+				TaskID:     "123",
+				TaskStatus: models.TaskStatusFinished,
+			},
+		})
+		assert.NoError(t, err)
+		rw.Write(resp)
+	}))
 
-	getconfigResp, err := getConfigClient.GetWithRequest(req)
-	if err != nil {
-		t.Errorf("Got error while creating task: %s", err.Error())
-	}
+	taskCl := New(resty.NewWithClient(server.Client()).SetHostURL(server.URL))
 
-	time.Sleep(10 * time.Second) // give netpalm some time to process
-
-	resp, err := taskClient.GetWithTaskResponse(getconfigResp.Data)
-	if err != nil {
-		t.Errorf("Got error while running Get(): %s", err.Error())
+	getConfigResp := models.TaskResponse{
+		TaskID: "123",
 	}
-	if resp == nil {
-		t.Errorf("Got nil response but no error: %s", fmt.Sprint(resp))
-	}
+	resp, err := taskCl.GetWithTaskResponse(getConfigResp)
+	assert.NoError(t, err)
+	assert.Equal(t, resp.Data.TaskID, "123")
+	assert.Equal(t, resp.Data.TaskStatus, models.TaskStatusFinished)
 }
