@@ -5,11 +5,12 @@ on:
     branches: [ main ]
   pull_request:
     branches: [ main ]
+
 jobs:
   coverage:
     runs-on: ubuntu-18.04
     steps:
-      - name: Set up Go 1.x
+      - name: Set up Go 1.15
         uses: actions/setup-go@v2
         with:
           go-version: ^1.15
