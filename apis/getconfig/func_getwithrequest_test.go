@@ -50,3 +50,27 @@ func TestClient_GetWithRequest(t *testing.T) {
 	assert.Equal(t, resp.Data.TaskStatus, models.TaskStatusQueued)
 	assert.Equal(t, resp.Data.TaskID, "123")
 }
+
+func TestGetWithRequest_InvalidJson(t *testing.T) {
+	server := httptest.NewServer(http.HandlerFunc(func(rw http.ResponseWriter, req *http.Request) {
+		rw.Write([]byte("no json"))
+	}))
+
+	configCl := getconfig.New(transport.NewClient(server.URL, "123", server.Client()))
+
+	req := models.GetConfigRequest{
+		Library: models.LibraryNetmiko,
+		ConnectionArgs: models.ConnectionArgs{
+			DeviceType: "vyos",
+			Host:       "10.10.10.10",
+			Username:   "demo",
+			Password:   "demo",
+		},
+		Command:       "show int",
+		QueueStrategy: models.QueueStrategyPinned,
+	}
+
+	_, err := configCl.GetWithRequest(context.Background(), req)
+	assert.Error(t, err)
+	assert.EqualError(t, err, "invalid character 'o' in literal null (expecting 'u')")
+}
