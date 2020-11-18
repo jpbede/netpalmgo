@@ -8,6 +8,7 @@ import (
 	"strings"
 )
 
+// Client is the http transport client for netpalm. It handles the authentication
 type Client struct {
 	baseURL    string
 	httpClient *http.Client
@@ -53,6 +54,7 @@ func (c *Client) Delete(ctx context.Context, path string, out interface{}, opts 
 	return c.doRequest(ctx, http.MethodPatch, path, out, opts...)
 }
 
+// doRequest does the actual request
 func (c *Client) doRequest(ctx context.Context, method string, path string, out interface{}, opts ...RequestOption) error {
 	// create a new request
 	path = strings.TrimPrefix(path, "/")
