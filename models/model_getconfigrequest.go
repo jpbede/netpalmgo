@@ -4,7 +4,7 @@ package models
 type GetConfigRequest struct {
 	Library        Library                `json:"library"`
 	ConnectionArgs ConnectionArgs         `json:"connection_args"`
-	Command        string                 `json:"command"`
+	Command        []string               `json:"command"`
 	Args           map[string]interface{} `json:"args,omitempty"`
 	QueueStrategy  QueueStrategy          `json:"queue_strategy"`
 	PostChecks     []PrePostCheck         `json:"post_checks,omitempty"`

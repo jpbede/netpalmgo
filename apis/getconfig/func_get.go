@@ -10,7 +10,7 @@ func (c *client) Get(ctx context.Context, command string, library models.Library
 	getconfigReq := models.GetConfigRequest{
 		Library:        library,
 		ConnectionArgs: args,
-		Command:        command,
+		Command:        []string{command},
 		QueueStrategy:  models.QueueStrategyFIFO,
 	}
 	return c.GetWithRequest(ctx, getconfigReq)
