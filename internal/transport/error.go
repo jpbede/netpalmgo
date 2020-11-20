@@ -19,5 +19,13 @@ func CheckForHTTPError(response *http.Response) error {
 		json.Unmarshal(read, &errArr)
 		return errors.New(errArr["detail"])
 	}
+	// invalid request
+	if response.StatusCode == http.StatusUnprocessableEntity {
+		read, err := ioutil.ReadAll(response.Body)
+		if err != nil {
+			return err
+		}
+		return errors.New(string(read))
+	}
 	return nil
 }
