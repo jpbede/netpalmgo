@@ -13,16 +13,18 @@ type SetConfigRequest struct {
 	EnableMode     bool           `json:"enable_mode,omitempty"`
 }
 
+// J2Config jinja2 template and arguments
 type J2Config struct {
 	Template string            `json:"template"`
 	Args     map[string]string `json:"args"`
 }
 
+// SetConfigArgs arguments for the SetConfigRequest
 type SetConfigArgs struct {
 	Payload          interface{} `json:"payload,omitempty"`
 	DefaultOperation string      `json:"default_operation,omitempty"`
 	Target           string      `json:"target,omitempty"`
 	Config           string      `json:"config,omitempty"`
-	Uri              string      `json:"uri,omitempty"`
+	URI              string      `json:"uri,omitempty"`
 	Action           string      `json:"action,omitempty"`
 }
