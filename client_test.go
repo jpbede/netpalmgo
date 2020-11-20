@@ -41,6 +41,15 @@ func TestClient_GetConfig(t *testing.T) {
 	}
 }
 
+func TestClient_SetConfig(t *testing.T) {
+	cl := GetClient()
+	cfgAPI := cl.SetConfig()
+
+	if cfgAPI == nil {
+		t.Error("Failed to get 'SetConfig' endpoint")
+	}
+}
+
 func TestClient_Task(t *testing.T) {
 	cl := GetClient()
 	taskAPI := cl.Task()
