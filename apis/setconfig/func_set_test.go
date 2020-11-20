@@ -3,6 +3,7 @@ package setconfig_test
 import (
 	"context"
 	"github.com/jpbede/netpalmgo/apis/setconfig"
+	testing2 "github.com/jpbede/netpalmgo/internal/testing"
 	"github.com/jpbede/netpalmgo/internal/transport"
 	"github.com/jpbede/netpalmgo/models"
 	"github.com/stretchr/testify/assert"
@@ -28,15 +29,10 @@ func TestClient_Set(t *testing.T) {
 	setConfigClient := setconfig.New(transport.NewClient(server.URL, "123", server.Client()))
 
 	setConfigReq := models.SetConfigRequest{
-		Library: models.LibraryNapalm,
-		ConnectionArgs: models.ConnectionArgs{
-			DeviceType: "vyos",
-			Host:       "10.10.10.10",
-			Username:   "demo",
-			Password:   "demo",
-		},
-		Config:        []string{"set int tunnel tun0 remote-ip 123.123.123.123"},
-		QueueStrategy: models.QueueStrategyFIFO,
+		Library:        models.LibraryNapalm,
+		ConnectionArgs: testing2.GetConnectionArgs(),
+		Config:         []string{"set int tunnel tun0 remote-ip 123.123.123.123"},
+		QueueStrategy:  models.QueueStrategyFIFO,
 	}
 
 	resp, err := setConfigClient.Set(context.Background(), false, setConfigReq)
@@ -53,15 +49,10 @@ func TestClient_SetInvalidJson(t *testing.T) {
 	setConfigClient := setconfig.New(transport.NewClient(server.URL, "123", server.Client()))
 
 	setConfigReq := models.SetConfigRequest{
-		Library: models.LibraryNapalm,
-		ConnectionArgs: models.ConnectionArgs{
-			DeviceType: "vyos",
-			Host:       "10.10.10.10",
-			Username:   "demo",
-			Password:   "demo",
-		},
-		Config:        []string{"set int tunnel tun0 remote-ip 123.123.123.123"},
-		QueueStrategy: models.QueueStrategyFIFO,
+		Library:        models.LibraryNapalm,
+		ConnectionArgs: testing2.GetConnectionArgs(),
+		Config:         []string{"set int tunnel tun0 remote-ip 123.123.123.123"},
+		QueueStrategy:  models.QueueStrategyFIFO,
 	}
 
 	_, err := setConfigClient.Set(context.Background(), false, setConfigReq)
