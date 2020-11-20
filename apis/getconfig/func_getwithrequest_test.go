@@ -44,7 +44,7 @@ func TestClient_GetWithRequest(t *testing.T) {
 	}
 	req.UseTextFSM()
 
-	resp, err := configCl.GetWithRequest(context.Background(), req)
+	resp, err := configCl.WithRequest(context.Background(), req)
 	assert.NoError(t, err)
 	assert.Equal(t, resp.Status, models.StatusSuccess)
 	assert.Equal(t, resp.Data.TaskStatus, models.TaskStatusQueued)
@@ -70,7 +70,7 @@ func TestGetWithRequest_InvalidJson(t *testing.T) {
 		QueueStrategy: models.QueueStrategyPinned,
 	}
 
-	_, err := configCl.GetWithRequest(context.Background(), req)
+	_, err := configCl.WithRequest(context.Background(), req)
 	assert.Error(t, err)
 	assert.EqualError(t, err, "invalid character 'o' in literal null (expecting 'u')")
 }

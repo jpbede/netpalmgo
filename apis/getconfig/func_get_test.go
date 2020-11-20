@@ -47,7 +47,7 @@ func TestClient_Get(t *testing.T) {
 		Username:   "demo",
 		Password:   "demo",
 	}
-	resp, err := configCl.Get(context.Background(), "show int", models.LibraryNetmiko, connArgs)
+	resp, err := configCl.WithCommand(context.Background(), "show int", models.LibraryNetmiko, connArgs)
 	assert.NoError(t, err)
 	assert.Equal(t, resp.Status, models.StatusSuccess)
 	assert.Equal(t, resp.Data.TaskStatus, models.TaskStatusQueued)

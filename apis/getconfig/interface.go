@@ -7,7 +7,6 @@ import (
 
 // Client represents the functions implemented by this API
 type Client interface {
-	Get(ctx context.Context, command string, library models.Library, args models.ConnectionArgs) (*models.Response, error)
-
-	GetWithRequest(ctx context.Context, request models.GetConfigRequest) (*models.Response, error)
+	WithCommand(ctx context.Context, command string, library models.Library, args models.ConnectionArgs) (*models.Response, error)
+	WithRequest(ctx context.Context, request models.GetConfigRequest) (*models.Response, error)
 }
