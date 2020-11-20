@@ -15,8 +15,8 @@ type SetConfigRequest struct {
 
 // J2Config jinja2 template and arguments
 type J2Config struct {
-	Template string            `json:"template"`
-	Args     map[string]string `json:"args"`
+	Template string                 `json:"template"`
+	Args     map[string]interface{} `json:"args"`
 }
 
 // SetConfigArgs arguments for the SetConfigRequest
