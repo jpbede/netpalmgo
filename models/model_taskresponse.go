@@ -1,7 +1,24 @@
 package models
 
+import (
+	"encoding/json"
+)
+
 // TaskResults represents the results of the task
 type TaskResults map[string]interface{}
+
+// MapTo marshals task result to given struct
+func (tr *TaskResults) MapTo(destStruct interface{}) error {
+	enc, err := json.Marshal(tr)
+	if err != nil {
+		return err
+	}
+	err = json.Unmarshal(enc, destStruct)
+	if err != nil {
+		return err
+	}
+	return nil
+}
 
 // TaskError represents a error
 type TaskError string
