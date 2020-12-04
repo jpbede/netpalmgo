@@ -4,6 +4,8 @@ package models
 type Status string
 
 const (
+	// StatusSuccess request successfully
 	StatusSuccess Status = "success"
-	StatusError   Status = "error"
+	// StatusError request failed
+	StatusError Status = "error"
 )

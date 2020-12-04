@@ -4,8 +4,12 @@ package models
 type Library string
 
 const (
-	LibraryNetmiko  Library = "netmiko"
-	LibraryNapalm   Library = "napalm"
+	// LibraryNetmiko use netmiko for connection
+	LibraryNetmiko Library = "netmiko"
+	// LibraryNetmiko use napalm for connection
+	LibraryNapalm Library = "napalm"
+	// LibraryNetmiko use ncclient for connection
 	LibraryNCClient Library = "ncclient"
+	// LibraryNetmiko use restconf for connection
 	LibraryRestConf Library = "restconf"
 )

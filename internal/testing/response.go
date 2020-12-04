@@ -5,6 +5,7 @@ import (
 	"github.com/jpbede/netpalmgo/models"
 )
 
+// GetTaskResponseJSON returns the a Task response JSON as byte slice
 func GetTaskResponseJSON(taskID string, taskStatus models.TaskStatus) []byte {
 	enc, _ := json.Marshal(models.Response{
 		Status: models.StatusSuccess,

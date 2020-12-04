@@ -18,9 +18,8 @@ func CheckForHTTPError(response *http.Response) error {
 		var errArr map[string]string
 		if err := json.Unmarshal(read, &errArr); err == nil {
 			return errors.New(errArr["detail"])
-		} else {
-			return errors.New(string(read))
 		}
+		return errors.New(string(read))
 	}
 
 	return nil
