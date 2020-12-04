@@ -6,7 +6,7 @@ type Library string
 const (
 	// LibraryNetmiko use netmiko for connection
 	LibraryNetmiko Library = "netmiko"
-	// LibraryNetmiko use napalm for connection
+	// LibraryNapalm use napalm for connection
 	LibraryNapalm Library = "napalm"
 	// LibraryNCClient use ncclient for connection
 	LibraryNCClient Library = "ncclient"
