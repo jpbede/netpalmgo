@@ -8,8 +8,8 @@ const (
 	LibraryNetmiko Library = "netmiko"
 	// LibraryNetmiko use napalm for connection
 	LibraryNapalm Library = "napalm"
-	// LibraryNetmiko use ncclient for connection
+	// LibraryNCClient use ncclient for connection
 	LibraryNCClient Library = "ncclient"
-	// LibraryNetmiko use restconf for connection
+	// LibraryRestConf use restconf for connection
 	LibraryRestConf Library = "restconf"
 )

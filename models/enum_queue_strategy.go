@@ -6,6 +6,6 @@ type QueueStrategy string
 const (
 	// QueueStrategyFIFO queue strategy first in first out
 	QueueStrategyFIFO QueueStrategy = "fifo"
-	// QueueStrategyFIFO queue strategy with a fixed worker
+	// QueueStrategyPinned queue strategy with a fixed worker
 	QueueStrategyPinned QueueStrategy = "pinned"
 )
