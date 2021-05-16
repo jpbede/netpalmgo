@@ -1,8 +1,8 @@
 package task_test
 
 import (
-	"github.com/jpbede/netpalmgo/apis/task"
-	"github.com/jpbede/netpalmgo/internal/transport"
+	"go.bnck.me/netpalm/apis/task"
+	"go.bnck.me/netpalm/internal/transport"
 	"testing"
 )
 

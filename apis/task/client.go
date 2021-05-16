@@ -1,7 +1,7 @@
 package task
 
 import (
-	"github.com/jpbede/netpalmgo/internal/transport"
+	"go.bnck.me/netpalm/internal/transport"
 )
 
 type client struct {

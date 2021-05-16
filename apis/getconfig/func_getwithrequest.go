@@ -2,8 +2,8 @@ package getconfig
 
 import (
 	"context"
-	"github.com/jpbede/netpalmgo/internal/transport"
-	"github.com/jpbede/netpalmgo/models"
+	"go.bnck.me/netpalm/internal/transport"
+	"go.bnck.me/netpalm/models"
 )
 
 // GetWithRequest run a already created request

@@ -2,9 +2,9 @@ package netpalmgo
 
 import (
 	"context"
-	testing2 "github.com/jpbede/netpalmgo/internal/testing"
-	"github.com/jpbede/netpalmgo/models"
 	"github.com/stretchr/testify/assert"
+	testing2 "go.bnck.me/netpalm/internal/testing"
+	"go.bnck.me/netpalm/models"
 	"net/http"
 	"net/http/httptest"
 	"os"

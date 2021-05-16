@@ -2,7 +2,7 @@ package testing
 
 import (
 	"encoding/json"
-	"github.com/jpbede/netpalmgo/models"
+	"go.bnck.me/netpalm/models"
 )
 
 // GetTaskResponseJSON returns the a Task response JSON as byte slice

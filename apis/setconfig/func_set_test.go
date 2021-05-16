@@ -2,11 +2,11 @@ package setconfig_test
 
 import (
 	"context"
-	"github.com/jpbede/netpalmgo/apis/setconfig"
-	testing2 "github.com/jpbede/netpalmgo/internal/testing"
-	"github.com/jpbede/netpalmgo/internal/transport"
-	"github.com/jpbede/netpalmgo/models"
 	"github.com/stretchr/testify/assert"
+	"go.bnck.me/netpalm/apis/setconfig"
+	testing2 "go.bnck.me/netpalm/internal/testing"
+	"go.bnck.me/netpalm/internal/transport"
+	"go.bnck.me/netpalm/models"
 	"io/ioutil"
 	"net/http"
 	"net/http/httptest"

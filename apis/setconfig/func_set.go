@@ -2,8 +2,8 @@ package setconfig
 
 import (
 	"context"
-	"github.com/jpbede/netpalmgo/internal/transport"
-	"github.com/jpbede/netpalmgo/models"
+	"go.bnck.me/netpalm/internal/transport"
+	"go.bnck.me/netpalm/models"
 )
 
 func (c *client) Set(ctx context.Context, dryRun bool, request models.SetConfigRequest) (*models.Response, error) {

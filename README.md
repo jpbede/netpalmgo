@@ -1,6 +1,6 @@
 # netpalmgo
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/0f2e53ed370844ff8696317a51be1e9e)](https://app.codacy.com/gh/jpbede/netpalmgo?utm_source=github.com&utm_medium=referral&utm_content=jpbede/netpalmgo&utm_campaign=Badge_Grade)
-[![PkgGoDev](https://pkg.go.dev/badge/github.com/jpbede/netpalmgo)](https://pkg.go.dev/github.com/jpbede/netpalmgo)
+[![PkgGoDev](https://pkg.go.dev/badge/go.bnck.me/netpalm)](https://pkg.go.dev/go.bnck.me/netpalm)
 ![test](https://github.com/jpbede/netpalmgo/workflows/test/badge.svg)
 [![codecov](https://codecov.io/gh/jpbede/netpalmgo/branch/main/graph/badge.svg)](https://codecov.io/gh/jpbede/netpalmgo)
 [![Go Report Card](https://goreportcard.com/badge/github.com/jpbede/netpalmgo)](https://goreportcard.com/report/github.com/jpbede/netpalmgo)
@@ -22,8 +22,8 @@ package main
 
 import (
   "context"
-  "github.com/jpbede/netpalmgo"
-  "github.com/jpbede/netpalmgo/models"
+  "go.bnck.me/netpalm"
+  "go.bnck.me/netpalm/models"
 )
 
 func main() {
@@ -62,8 +62,8 @@ package main
 
 import (
   "context"
-  "github.com/jpbede/netpalmgo"
-  "github.com/jpbede/netpalmgo/models"
+  "go.bnck.me/netpalm"
+  "go.bnck.me/netpalm/models"
 )
 
 func main() {

@@ -2,11 +2,11 @@ package netpalmgo
 
 import (
 	"context"
-	"github.com/jpbede/netpalmgo/apis/getconfig"
-	"github.com/jpbede/netpalmgo/apis/setconfig"
-	"github.com/jpbede/netpalmgo/apis/task"
-	"github.com/jpbede/netpalmgo/internal/transport"
-	"github.com/jpbede/netpalmgo/models"
+	"go.bnck.me/netpalm/apis/getconfig"
+	"go.bnck.me/netpalm/apis/setconfig"
+	"go.bnck.me/netpalm/apis/task"
+	"go.bnck.me/netpalm/internal/transport"
+	"go.bnck.me/netpalm/models"
 	"net/http"
 	"sync"
 	"time"

@@ -2,7 +2,7 @@ package getconfig
 
 import (
 	"context"
-	"github.com/jpbede/netpalmgo/models"
+	"go.bnck.me/netpalm/models"
 )
 
 // Client represents the functions implemented by this API

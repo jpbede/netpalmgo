@@ -2,7 +2,7 @@ package getconfig
 
 import (
 	"context"
-	"github.com/jpbede/netpalmgo/models"
+	"go.bnck.me/netpalm/models"
 )
 
 // Get runs a command with a given library on a given device (args)

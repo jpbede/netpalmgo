@@ -3,10 +3,10 @@ package task_test
 import (
 	"context"
 	"encoding/json"
-	"github.com/jpbede/netpalmgo/apis/task"
-	"github.com/jpbede/netpalmgo/internal/transport"
-	"github.com/jpbede/netpalmgo/models"
 	"github.com/stretchr/testify/assert"
+	"go.bnck.me/netpalm/apis/task"
+	"go.bnck.me/netpalm/internal/transport"
+	"go.bnck.me/netpalm/models"
 	"net/http"
 	"net/http/httptest"
 	"testing"

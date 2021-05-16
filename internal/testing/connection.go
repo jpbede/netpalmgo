@@ -1,6 +1,6 @@
 package testing
 
-import "github.com/jpbede/netpalmgo/models"
+import "go.bnck.me/netpalm/models"
 
 // GetConnectionArgs returns a connection for teesting
 func GetConnectionArgs() models.ConnectionArgs {

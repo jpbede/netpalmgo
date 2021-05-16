@@ -2,7 +2,7 @@ package task
 
 import (
 	"context"
-	"github.com/jpbede/netpalmgo/models"
+	"go.bnck.me/netpalm/models"
 )
 
 // WithTaskResponse gets the current infos for a given TaskResponse

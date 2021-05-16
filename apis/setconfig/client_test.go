@@ -1,8 +1,8 @@
 package setconfig_test
 
 import (
-	"github.com/jpbede/netpalmgo/apis/setconfig"
-	"github.com/jpbede/netpalmgo/internal/transport"
+	"go.bnck.me/netpalm/apis/setconfig"
+	"go.bnck.me/netpalm/internal/transport"
 	"testing"
 )
 
